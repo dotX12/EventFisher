@@ -25,3 +25,11 @@ def btc_new_price():
     print(f'BTC NEW MEDIUM FEE: {event.medium_fee}')
 
 ```
+---
+#### ***How to start?***
+```
+💲 git clone https://github.com/dotX12/EventFisher/
+💲 cd EventFisher
+💲 pip3 install -r requirements.txt
+💲 python3 main.py
+```
