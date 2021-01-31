@@ -1,13 +1,13 @@
 import time
 
 import aiohttp
-from pyee import EventEmitter
-from options import *
+from pyee import AsyncIOEventEmitter
+from .options import *
 
 
-class BlockcypherAPI(EventEmitter):
+class BlockcypherAPI(AsyncIOEventEmitter):
     def __init__(self, poll_delay: int = 30):
-        EventEmitter.__init__(self)
+        AsyncIOEventEmitter.__init__(self)
         self.poll_delay = poll_delay
         self.last_poll = 0
         self.tx = {}
