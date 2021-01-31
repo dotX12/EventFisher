@@ -18,6 +18,6 @@ def btc_new_price():
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(asyncio.ensure_future(event.create_session()))
-sch = Scheduler([event])
-sch.run_forever()
+scheduler = Scheduler([event], loop)
+scheduler.run_forever()
 
