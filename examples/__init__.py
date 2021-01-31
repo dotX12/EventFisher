@@ -1,1 +1,1 @@
-from .teleBot import *
+from .telebot import *

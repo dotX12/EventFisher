@@ -1,7 +1,7 @@
 import asyncio
 from scheduler.scheduler import Scheduler
 import concurrent.futures
-from examples.teleBot import non_blocking, event, bot
+from examples.telebot import non_blocking, event, bot
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(asyncio.ensure_future(event.create_session()))
