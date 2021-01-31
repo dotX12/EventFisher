@@ -1,6 +1,6 @@
 import asyncio
-from blockcypher import *
-from scheduler import Scheduler
+from API.blockcypher import *
+from scheduler.scheduler import Scheduler
 
 event = BlockcypherAPI()
 
@@ -9,6 +9,11 @@ event = BlockcypherAPI()
 def new_transaction():
     print('New Transaction!'
           f'TX Hash: {event.tx["tx_hash"]}')
+
+
+@event.on('new_btc_medium_fee')
+def btc_new_price():
+    print(f'BTC NEW MEDIUM FEE: {event.medium_fee}')
 
 
 loop = asyncio.get_event_loop()

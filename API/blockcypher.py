@@ -11,6 +11,7 @@ class BlockcypherAPI(EventEmitter):
         self.poll_delay = poll_delay
         self.last_poll = 0
         self.tx = {}
+        self.medium_fee = 0
         self.session = ...
 
     async def create_session(self):
@@ -43,9 +44,16 @@ class BlockcypherAPI(EventEmitter):
             self.tx = resp["txrefs"][0]
             self.emit("new_transaction")
 
+    async def get_info_medium_fee(self):
+        resp = await self.request('GET', MAIN_INFO_BTC)
+        if self.medium_fee != resp['medium_fee_per_kb']:
+            self.medium_fee = resp['medium_fee_per_kb']
+            self.emit('new_btc_medium_fee')
+
     async def poll(self):
         if time.time() - self.last_poll > self.poll_delay:
             self.emit("start_poll")
             await self.check_new_transaction()
+            await self.get_info_medium_fee()
             self.emit("end_poll")
             self.last_poll = time.time()
